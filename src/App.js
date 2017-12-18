@@ -45,6 +45,19 @@ class App extends Component {
     });
   }
 
+  nameChangedHandler = (event, id) => {
+    const eventTarget = event.target;
+    this.setState(prevState => {
+      const persons = prevState.persons.map(person => {
+        if (person.id === id) {
+          person.name = eventTarget.value;
+        }
+        return person;
+      });
+      return { persons };
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -53,7 +66,8 @@ class App extends Component {
         {this.state.persons.map(person => {
           return (
             <Person
-              onDeleteButtonClick={this.deletePerson.bind(this, person.id)}
+              onDeleteButtonClick={() => this.deletePerson(person.id)}
+              onInputChange={(e) => this.nameChangedHandler(e, person.id)}
               key={person.id}
               name={person.name}
               age={person.age}
