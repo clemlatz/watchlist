@@ -1,60 +1,51 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Movie from './Movie/Movie';
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      persons: [
-        { id: 1, name: "Clément", age: 33 },
-        { id: 2, name: "Mathilde", age: 29 }
+      movies: [
+        { id: 1, title: "Mother", director: "Darren Aronofsky" },
+        { id: 2, title: "La La Land", director: "Damien Chazelle" }
       ]
     }
-  }
-
-  switchNameHandler = () => {
-    this.setState({
-      persons: [
-        { id: 1, name: "Jean", age: 34 },
-        { id: 2, name: "Anne", age: 30 }
-      ]
-    });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState((prevState) => {
-      const person = {
-        id: prevState.persons.length + 1,
-        name: this._name.value,
-        age: parseInt(this._age.value, 10)
+      const movie = {
+        id: prevState.movies.length + 1,
+        title: this._title.value,
+        director: this._director.value
       };
-      const persons = prevState.persons;
-      persons.push(person);
-      return { persons };
+      const movies = prevState.movies;
+      movies.push(movie);
+      return { movies };
     });
   }
 
-  deletePerson(id) {
+  deleteMovie(id) {
     console.log(id);
     this.setState(prevState => {
-      const persons = prevState.persons.filter(person => person.id !== id);
-      return { persons };
+      const movies = prevState.movies.filter(movie => movie.id !== id);
+      return { movies };
     });
   }
 
-  nameChangedHandler = (event, id) => {
+  titleChangedHandler = (event, id) => {
     const eventTarget = event.target;
     this.setState(prevState => {
-      const persons = prevState.persons.map(person => {
-        if (person.id === id) {
-          person.name = eventTarget.value;
+      const movies = prevState.movies.map(movie => {
+        if (movie.id === id) {
+          movie.title = eventTarget.value;
         }
-        return person;
+        return movie;
       });
-      return { persons };
+      return { movies };
     });
   }
 
@@ -63,20 +54,20 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a react App</h1>
         <button onClick={this.switchNameHandler}>Switch name</button>
-        {this.state.persons.map(person => {
+        {this.state.movies.map(movie => {
           return (
-            <Person
-              onDeleteButtonClick={() => this.deletePerson(person.id)}
-              onInputChange={(e) => this.nameChangedHandler(e, person.id)}
-              key={person.id}
-              name={person.name}
-              age={person.age}
+            <Movie
+              onDeleteButtonClick={() => this.deleteMovie(movie.id)}
+              onInputChange={(e) => this.titleChangedHandler(e, movie.id)}
+              key={movie.id}
+              title={movie.title}
+              director={movie.director}
             />
           );
         })}
         <form onSubmit={this.handleSubmit}>
-          <input name="name" placeholder="name" ref={(input) => this._name = input}/>
-          <input name="age" placeholder="age" type="number" ref={(input) => this._age = input}/>
+          <input name="title" placeholder="Title" ref={(input) => this._title = input}/>
+          <input name="director" placeholder="Director" ref={(input) => this._director = input}/>
           <button type="submit">add</button>
         </form>
       </div>
