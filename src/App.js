@@ -50,22 +50,27 @@ class App extends Component {
   }
 
   render() {
+    const formStyle = {
+      marginTop: '15px'
+    };
+
     return (
       <div className="App">
         <h1>Hi, I'm a react App</h1>
-        <button onClick={this.switchNameHandler}>Switch name</button>
-        {this.state.movies.map(movie => {
-          return (
-            <Movie
-              onDeleteButtonClick={() => this.deleteMovie(movie.id)}
-              onInputChange={(e) => this.titleChangedHandler(e, movie.id)}
-              key={movie.id}
-              title={movie.title}
-              director={movie.director}
-            />
-          );
-        })}
-        <form onSubmit={this.handleSubmit}>
+        <div class="movie-list">
+          {this.state.movies.map(movie => {
+            return (
+              <Movie
+                onDeleteButtonClick={() => this.deleteMovie(movie.id)}
+                onInputChange={(e) => this.titleChangedHandler(e, movie.id)}
+                key={movie.id}
+                title={movie.title}
+                director={movie.director}
+              />
+            );
+          })}
+        </div>
+        <form style={formStyle} onSubmit={this.handleSubmit}>
           <input name="title" placeholder="Title" ref={(input) => this._title = input}/>
           <input name="director" placeholder="Director" ref={(input) => this._director = input}/>
           <button type="submit">add</button>
