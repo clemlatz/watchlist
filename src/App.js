@@ -34,7 +34,14 @@ class App extends Component {
       const persons = prevState.persons;
       persons.push(person);
       return { persons };
-      debugger;
+    });
+  }
+
+  deletePerson(id) {
+    console.log(id);
+    this.setState(prevState => {
+      const persons = prevState.persons.filter(person => person.id !== id);
+      return { persons };
     });
   }
 
@@ -43,7 +50,16 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a react App</h1>
         <button onClick={this.switchNameHandler}>Switch name</button>
-        {this.state.persons.map(person => <Person key={person.id} name={person.name} age={person.age}/>)}
+        {this.state.persons.map(person => {
+          return (
+            <Person
+              onDeleteButtonClick={this.deletePerson.bind(this, person.id)}
+              key={person.id}
+              name={person.name}
+              age={person.age}
+            />
+          );
+        })}
         <form onSubmit={this.handleSubmit}>
           <input name="name" placeholder="name" ref={(input) => this._name = input}/>
           <input name="age" placeholder="age" type="number" ref={(input) => this._age = input}/>
