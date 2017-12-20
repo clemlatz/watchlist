@@ -10,7 +10,8 @@ class App extends Component {
       showMovies: true,
       movies: [
         { id: 1, title: "Mother", director: "Darren Aronofsky" },
-        { id: 2, title: "La La Land", director: "Damien Chazelle" }
+        { id: 2, title: "La La Land", director: "Damien Chazelle" },
+        { id: 3, title: "The Last Jedi", director: "Rian Johnson" }
       ]
     }
   }
@@ -38,16 +39,14 @@ class App extends Component {
   }
 
   titleChangedHandler = (event, id) => {
-    const eventTarget = event.target;
-    this.setState(prevState => {
-      const movies = prevState.movies.map(movie => {
-        if (movie.id === id) {
-          movie.title = eventTarget.value;
-        }
-        return movie;
-      });
-      return { movies };
+    const movies = [...this.state.movies];
+    const movieIndex = movies.findIndex((movie) => {
+      return movie.id === id;
     });
+    const movie = {...movies[movieIndex]};
+    movie.title = event.target.value;
+    movies[movieIndex] = movie;
+    this.setState({ movies });
   }
 
   _toggleMoviesHandler = () => {
