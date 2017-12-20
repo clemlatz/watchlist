@@ -6,3 +6,14 @@
   display: flex;
 }
 
+.App-title {
+  font-weight: normal;
+}
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}

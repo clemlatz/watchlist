@@ -60,6 +60,13 @@ class App extends Component {
       marginTop: '15px'
     };
 
+    const buttonStyle = {
+      background: 'red',
+      border: '1px solid black',
+      color: 'white',
+      fontSize: '20px'
+    };
+
     let movies = null;
     if (this.state.showMovies) {
       movies = (
@@ -77,12 +84,22 @@ class App extends Component {
           })}
         </div>
       )
+      buttonStyle.background = 'green';
+    }
+
+    const classes = ['App-title'];
+    const movieLength = this.state.movies.length;
+    if (movieLength < 3) {
+      classes.push('red');
+    }
+    if (movieLength < 2) {
+      classes.push('bold');
     }
 
     return (
       <div className="App">
-        <h1>Hi, I'm a react App</h1>
-        <button onClick={this._toggleMoviesHandler}>Toggle movies</button>
+        <h1 className={classes.join(' ')}>Movies</h1>
+        <button style={buttonStyle} onClick={this._toggleMoviesHandler}>Toggle movies</button>
         {movies}
         <form style={formStyle} onSubmit={this.handleSubmit}>
           <input name="title" placeholder="Title" ref={(input) => this._title = input}/>
