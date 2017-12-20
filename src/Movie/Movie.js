@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './Movie.css';
+import css from './Movie.css';
 
 const movie= (props) => {
   return (
-    <div className="Movie">
+    <div className={css.Movie}>
       <h2>{props.title}</h2>
       <p>Director: {props.director}</p>
       <span onClick={props.onDeleteButtonClick}>(x)</span><br/>

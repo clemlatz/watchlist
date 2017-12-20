@@ -3,5 +3,11 @@
   margin: 16px;
   padding: 16px;
   text-align: center;
-  width: 200px;
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .Movie {
+    width: 200px;
+  }
 }

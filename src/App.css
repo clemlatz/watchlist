@@ -2,11 +2,12 @@
   text-align: center;
 }
 
-.movie-list {
+.movies {
   display: flex;
+  flex-wrap: wrap;
 }
 
-.App-title {
+.title {
   font-weight: normal;
 }
 
@@ -16,4 +17,25 @@
 
 .bold {
   font-weight: bold;
+}
+
+.App button {
+  background: green;
+  border: 1px solid green;
+  color: white;
+  font: inherit;
+  padding: 16px;
+}
+
+.App button:hover {
+  background: lightgreen;
+  color: black;
+}
+
+.App button.red {
+  background: red;
+}
+
+.App button.red:hover {
+  background: salmon;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import css from './App.css';
 import Movie from './Movie/Movie';
 
 class App extends Component {
@@ -60,17 +60,11 @@ class App extends Component {
       marginTop: '15px'
     };
 
-    const buttonStyle = {
-      background: 'red',
-      border: '1px solid black',
-      color: 'white',
-      fontSize: '20px'
-    };
-
     let movies = null;
+    let buttonClass = '';
     if (this.state.showMovies) {
       movies = (
-        <div className="movie-list">
+        <div className={css.movies}>
           {this.state.movies.map(movie => {
             return (
               <Movie
@@ -84,22 +78,22 @@ class App extends Component {
           })}
         </div>
       )
-      buttonStyle.background = 'green';
+      buttonClass = css.red;
     }
 
-    const classes = ['App-title'];
+    const classes = [css.title];
     const movieLength = this.state.movies.length;
     if (movieLength < 3) {
-      classes.push('red');
+      classes.push(css.red);
     }
     if (movieLength < 2) {
-      classes.push('bold');
+      classes.push(css.bold);
     }
 
     return (
-      <div className="App">
+      <div className={css.App}>
         <h1 className={classes.join(' ')}>Movies</h1>
-        <button style={buttonStyle} onClick={this._toggleMoviesHandler}>Toggle movies</button>
+        <button className={buttonClass} onClick={this._toggleMoviesHandler}>Toggle movies</button>
         {movies}
         <form style={formStyle} onSubmit={this.handleSubmit}>
           <input name="title" placeholder="Title" ref={(input) => this._title = input}/>
