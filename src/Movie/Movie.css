@@ -8,6 +8,7 @@
 
 @media (min-width: 500px) {
   .Movie {
-    width: 200px;
+    margin: 16px auto;
+    width: 400px;
   }
 }
