@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import css from './App.css';
-import Movie from './Movie/Movie';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Movie from '../components/Movies/Movie/Movie';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
