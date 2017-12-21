@@ -3,6 +3,9 @@ import React from 'react';
 import css from './Movie.css';
 
 const movie= (props) => {
+  if (typeof props.title === 'undefined') {
+    throw new Error('Cannot render Movie without a title');
+  }
   return (
     <div className={css.Movie}>
       <h2>{props.title}</h2>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import css from './App.css';
 import Movie from './Movie/Movie';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
@@ -11,7 +12,8 @@ class App extends Component {
       movies: [
         { id: 1, title: "Mother", director: "Darren Aronofsky" },
         { id: 2, title: "La La Land", director: "Damien Chazelle" },
-        { id: 3, title: "The Last Jedi", director: "Rian Johnson" }
+        { id: 3, title: "The Last Jedi", director: "Rian Johnson" },
+        //{ id: 4, director: "Steven Spielberg" }
       ]
     }
   }
@@ -67,13 +69,14 @@ class App extends Component {
         <div className={css.movies}>
           {this.state.movies.map(movie => {
             return (
-              <Movie
-                onDeleteButtonClick={() => this.deleteMovie(movie.id)}
-                onInputChange={(e) => this.titleChangedHandler(e, movie.id)}
-                key={movie.id}
-                title={movie.title}
-                director={movie.director}
-              />
+              <ErrorBoundary key={movie.id}>
+                <Movie
+                  onDeleteButtonClick={() => this.deleteMovie(movie.id)}
+                  onInputChange={(e) => this.titleChangedHandler(e, movie.id)}
+                  title={movie.title}
+                  director={movie.director}
+                />
+              </ErrorBoundary>
             );
           })}
         </div>
