@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import css from './App.css';
-import Movie from '../components/Movies/Movie/Movie';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+
+import Cockpit from '../components/Cockpit/Cockpit';
+import Movies from '../components/Movies/Movies';
+import MovieForm from '../components/Movies/MovieForm/MovieForm';
 
 class App extends Component {
 
@@ -18,11 +20,11 @@ class App extends Component {
     }
   }
 
-  handleSubmit = (event) => {
+  _handleSubmit = (event) => {
     event.preventDefault();
     this.setState((prevState) => {
       const movie = {
-        id: prevState.movies.length + 1,
+        id: Math.random(),
         title: this._title.value,
         director: this._director.value
       };
@@ -32,7 +34,7 @@ class App extends Component {
     });
   }
 
-  deleteMovie(id) {
+  _deleteMovie(id) {
     console.log(id);
     this.setState(prevState => {
       const movies = prevState.movies.filter(movie => movie.id !== id);
@@ -40,7 +42,7 @@ class App extends Component {
     });
   }
 
-  titleChangedHandler = (event, id) => {
+  _titleChangedHandler = (event, id) => {
     const movies = [...this.state.movies];
     const movieIndex = movies.findIndex((movie) => {
       return movie.id === id;
@@ -58,51 +60,26 @@ class App extends Component {
   }
 
   render() {
-    const formStyle = {
-      marginTop: '15px'
-    };
-
     let movies = null;
-    let buttonClass = '';
     if (this.state.showMovies) {
-      movies = (
-        <div className={css.movies}>
-          {this.state.movies.map(movie => {
-            return (
-              <ErrorBoundary key={movie.id}>
-                <Movie
-                  onDeleteButtonClick={() => this.deleteMovie(movie.id)}
-                  onInputChange={(e) => this.titleChangedHandler(e, movie.id)}
-                  title={movie.title}
-                  director={movie.director}
-                />
-              </ErrorBoundary>
-            );
-          })}
-        </div>
-      )
-      buttonClass = css.red;
-    }
-
-    const classes = [css.title];
-    const movieLength = this.state.movies.length;
-    if (movieLength < 3) {
-      classes.push(css.red);
-    }
-    if (movieLength < 2) {
-      classes.push(css.bold);
+      movies = <Movies movies={this.state.movies}
+        onDeleteButtonClick={this._deleteMovie.bind(this)}
+        onInputChange={this._titleChangedHandler.bind(this)} />;
     }
 
     return (
       <div className={css.App}>
-        <h1 className={classes.join(' ')}>Movies</h1>
-        <button className={buttonClass} onClick={this._toggleMoviesHandler}>Toggle movies</button>
+        <Cockpit
+          movieLength={this.state.movies.length}
+          showMovies={this.state.showMovies}
+          onClick={this._toggleMoviesHandler}
+        />
         {movies}
-        <form style={formStyle} onSubmit={this.handleSubmit}>
-          <input name="title" placeholder="Title" ref={(input) => this._title = input}/>
-          <input name="director" placeholder="Director" ref={(input) => this._director = input}/>
-          <button type="submit">add</button>
-        </form>
+        <MovieForm
+          onSubmit={this._handleSubmit}
+          titleRef={(input) => this._title = input}
+          directorRef={(input) => this._director = input}
+        />
       </div>
     );
   }
