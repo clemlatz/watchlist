@@ -19,7 +19,7 @@ export default (props) => {
 
   return (
     <div className={css.Cockpit}>
-      <h1 className={classes.join(' ')}>Movies</h1>
+      <h1 className={classes.join(' ')}>{props.appTitle}</h1>
       <button className={buttonClass} onClick={props.onClick}>Toggle movies</button>
     </div>
   );
