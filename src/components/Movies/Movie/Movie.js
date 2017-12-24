@@ -1,5 +1,7 @@
 import React from 'react';
 
+import WithClass from '../../../hoc/WithClass';
+
 import css from './Movie.css';
 
 const movie= (props) => {
@@ -7,12 +9,12 @@ const movie= (props) => {
     throw new Error('Cannot render Movie without a title');
   }
   return (
-    <div className={css.Movie}>
+    <WithClass classes={css.Movie}>
       <h2>{props.title}</h2>
       <p>Director: {props.director}</p>
       <span onClick={props.onDeleteButtonClick}>(x)</span><br/>
       <input type="text" onChange={props.onInputChange} value={props.title} />
-    </div>
+    </WithClass>
   );
 };
 

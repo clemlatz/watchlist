@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import css from './App.css';
 
+import WithClass from '../hoc/WithClass';
+
 import Cockpit from '../components/Cockpit/Cockpit';
 import Movies from '../components/Movies/Movies';
 import MovieForm from '../components/Movies/MovieForm/MovieForm';
@@ -68,7 +70,7 @@ class App extends Component {
     }
 
     return (
-      <div className={css.App}>
+      <WithClass classes={css.App}>
         <Cockpit
           appTitle={this.props.title}
           movieLength={this.state.movies.length}
@@ -81,7 +83,7 @@ class App extends Component {
           titleRef={(input) => this._title = input}
           directorRef={(input) => this._director = input}
         />
-      </div>
+      </WithClass>
     );
   }
 }
