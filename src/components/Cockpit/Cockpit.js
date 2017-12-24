@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Aux from '../../hoc/Aux';
-
 import css from './Cockpit.css';
 
 export default (props) => {
@@ -20,9 +18,9 @@ export default (props) => {
   }
 
   return (
-    <Aux>
+    <React.Fragment>
       <h1 className={classes.join(' ')}>{props.appTitle}</h1>
       <button className={buttonClass.join(' ')} onClick={props.onClick}>Toggle movies</button>
-    </Aux>
+    </React.Fragment>
   );
 }
