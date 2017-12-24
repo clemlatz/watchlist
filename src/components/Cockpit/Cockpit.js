@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Aux from '../../hoc/Aux';
+
 import css from './Cockpit.css';
 
 export default (props) => {
@@ -12,15 +14,15 @@ export default (props) => {
     classes.push(css.bold);
   }
 
-  let buttonClass = '';
+  let buttonClass = [css.Button];
   if (props.showMovies) {
-    buttonClass = css.red;
+    buttonClass.push(css.red);
   }
 
   return (
-    <div className={css.Cockpit}>
+    <Aux>
       <h1 className={classes.join(' ')}>{props.appTitle}</h1>
-      <button className={buttonClass} onClick={props.onClick}>Toggle movies</button>
-    </div>
+      <button className={buttonClass.join(' ')} onClick={props.onClick}>Toggle movies</button>
+    </Aux>
   );
 }
