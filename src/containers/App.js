@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import css from './App.css';
 
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
 
 import Cockpit from '../components/Cockpit/Cockpit';
 import Movies from '../components/Movies/Movies';
@@ -70,7 +70,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={css.App}>
+      <React.Fragment>
         <Cockpit
           appTitle={this.props.title}
           movieLength={this.state.movies.length}
@@ -83,9 +83,9 @@ class App extends Component {
           titleRef={(input) => this._title = input}
           directorRef={(input) => this._director = input}
         />
-      </WithClass>
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withClass(App, css.App);

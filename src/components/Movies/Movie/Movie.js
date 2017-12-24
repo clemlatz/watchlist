@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WithClass from '../../../hoc/WithClass';
+import withClass from '../../../hoc/withClass';
 
 import css from './Movie.css';
 
@@ -9,13 +9,13 @@ const movie= (props) => {
     throw new Error('Cannot render Movie without a title');
   }
   return (
-    <WithClass classes={css.Movie}>
+    <React.Fragment>
       <h2>{props.title}</h2>
       <p>Director: {props.director}</p>
       <span onClick={props.onDeleteButtonClick}>(x)</span><br/>
       <input type="text" onChange={props.onInputChange} value={props.title} />
-    </WithClass>
+    </React.Fragment>
   );
 };
 
-export default movie;
+export default withClass(movie, css.Movie);
