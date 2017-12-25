@@ -22,16 +22,15 @@ class App extends Component {
     }
   }
 
-  _handleSubmit = (event) => {
-    event.preventDefault();
+  _addMovie = (title, director, year) => {
     this.setState((prevState) => {
       const movie = {
         id: Math.random(),
-        title: this._title.value,
-        director: this._director.value
+        title,
+        director,
+        year
       };
-      const movies = prevState.movies;
-      movies.push(movie);
+      const movies = [movie, ...prevState.movies];
       return { movies };
     });
   }
@@ -77,12 +76,11 @@ class App extends Component {
           showMovies={this.state.showMovies}
           onClick={this._toggleMoviesHandler}
         />
-        {movies}
         <MovieForm
           onSubmit={this._handleSubmit}
-          titleRef={(input) => this._title = input}
-          directorRef={(input) => this._director = input}
+          addMovie={this._addMovie}
         />
+        {movies}
       </React.Fragment>
     );
   }
