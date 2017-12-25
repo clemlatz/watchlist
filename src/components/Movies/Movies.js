@@ -11,6 +11,7 @@ export default (props) => props.movies.map((movie) => {
         onInputChange={(e) => props.onInputChange(e, movie.id)}
         title={movie.title}
         director={movie.director}
+        year={movie.year}
       />
     </ErrorBoundary>
   );

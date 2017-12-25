@@ -14,9 +14,9 @@ class App extends Component {
     this.state = {
       showMovies: true,
       movies: [
-        { id: 1, title: "Mother", director: "Darren Aronofsky" },
-        { id: 2, title: "La La Land", director: "Damien Chazelle" },
-        { id: 3, title: "The Last Jedi", director: "Rian Johnson" },
+        { id: 1, title: "Mother", year: 2017, director: "Darren Aronofsky" },
+        { id: 2, title: "La La Land", year: 2016, director: "Damien Chazelle" },
+        { id: 3, title: "The Last Jedi", year: 2017, director: "Rian Johnson" },
         //{ id: 4, director: "Steven Spielberg" }
       ]
     }
