@@ -11,9 +11,10 @@ const Movie = (props) => {
   }
   return (
     <React.Fragment>
-      <h2>{props.title} ({props.year})</h2>
-      <p>Director: {props.director}</p>
-      <span onClick={props.onDeleteButtonClick}>(x)</span><br/>
+      <h2>{props.title}</h2>
+      <p>{props.releaseDate}</p>
+      <img src={props.poster} alt={props.title}/>
+      <button onClick={props.onDeleteButtonClick}>(x)</button><br/>
       <input type="text" onChange={props.onInputChange} value={props.title} />
     </React.Fragment>
   );
@@ -21,8 +22,8 @@ const Movie = (props) => {
 
 Movie.propTypes = {
   title: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
-  director: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
   onDeleteButtonClick: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired
 }

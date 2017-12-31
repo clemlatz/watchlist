@@ -10,8 +10,8 @@ export default (props) => props.movies.map((movie) => {
         onDeleteButtonClick={() => props.onDeleteButtonClick(movie.id)}
         onInputChange={(e) => props.onInputChange(e, movie.id)}
         title={movie.title}
-        director={movie.director}
-        year={movie.year}
+        releaseDate={movie.releaseDate}
+        poster={movie.poster}
       />
     </ErrorBoundary>
   );

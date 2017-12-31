@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import css from './Cockpit.css';
 
-export default (props) => {
+const cockpit = (props) => {
 
   const classes = [css.title];
   if (props.movieLength < 3) {
@@ -24,3 +25,12 @@ export default (props) => {
     </React.Fragment>
   );
 }
+
+cockpit.propTypes = {
+  appTitle: PropTypes.string.isRequired,
+  movieLength: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  showMovies: PropTypes.bool.isRequired
+}
+
+export default cockpit;

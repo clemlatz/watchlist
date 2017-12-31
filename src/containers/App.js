@@ -1,35 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import css from './App.css';
 
 import withClass from '../hoc/withClass';
 
 import Cockpit from '../components/Cockpit/Cockpit';
 import Movies from '../components/Movies/Movies';
-import MovieForm from '../components/Movies/MovieForm/MovieForm';
+import MovieFinder from '../containers/MovieFinder/MovieFinder.js';
 
 class App extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      showMovies: true,
-      movies: [
-        { id: 1, title: "Mother", year: 2017, director: "Darren Aronofsky" },
-        { id: 2, title: "La La Land", year: 2016, director: "Damien Chazelle" },
-        { id: 3, title: "The Last Jedi", year: 2017, director: "Rian Johnson" },
-        //{ id: 4, director: "Steven Spielberg" }
-      ]
-    }
+  static propTypes = {
+    title: PropTypes.string.isRequired
   }
 
-  _addMovie = (title, director, year) => {
+  state = {
+    showMovies: true,
+    movies: []
+  }
+
+  _addMovie = (movie) => {
     this.setState((prevState) => {
-      const movie = {
-        id: Math.random(),
-        title,
-        director,
-        year
-      };
       const movies = [movie, ...prevState.movies];
       return { movies };
     });
@@ -76,10 +68,7 @@ class App extends Component {
           showMovies={this.state.showMovies}
           onClick={this._toggleMoviesHandler}
         />
-        <MovieForm
-          onSubmit={this._handleSubmit}
-          addMovie={this._addMovie}
-        />
+        <MovieFinder addMovie={this._addMovie} />
         {movies}
       </React.Fragment>
     );
